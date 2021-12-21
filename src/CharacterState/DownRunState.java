@@ -1,0 +1,36 @@
+package CharacterState;
+
+import java.awt.Graphics;
+import java.awt.Rectangle;
+import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+
+public class DownRunState implements State{
+	CharacterState characterState;
+	public DownRunState(CharacterState state) {
+		this.characterState = state;
+	}
+	public void draw(Graphics g,ArrayList<BufferedImage> list,int posX,int posY) {
+		g.drawImage(list.get(2), (int) posX, (int) (posY + 20), null);
+		}
+	public void range(Rectangle nowRange,ArrayList<BufferedImage> image, int posX,int posY) {
+		nowRange.x = (int) posX + 5;
+		nowRange.y = (int) posY + 20;
+		nowRange.width = image.get(1).getWidth() - 10;
+		nowRange.height = image.get(1).getHeight();
+	}
+
+	public void setRun() {
+		
+	}
+	public void down(boolean isDown) {
+		if(isDown) {
+			characterState.setState(characterState.getDownState());
+			
+		} else {
+			characterState.setState(characterState.getRunState());
+			
+		}
+		
+	}
+}
